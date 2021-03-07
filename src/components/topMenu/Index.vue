@@ -7,7 +7,7 @@
  * @Author: Micky
  * @Date: 2021-03-06 21:10:42
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 11:35:18
+ * @LastEditTime: 2021-03-07 12:10:15
 -->
 <template>
   <div class="c-top-menu">
@@ -58,7 +58,7 @@ export default {
       this.setSelectKey()
       const targetMenu = this.topMenuList.find(item => item.path === this.selectedKey[0])
       if(!targetMenu.component){
-        this.$message.warning('该模块正在开发中……', 2)
+        this.$message.warning('该功能正在开发中', 2)
         this.$router.go(-1)
         return
       }
@@ -80,7 +80,7 @@ export default {
      */
     topMenuChange(e, item){
       if(!item.component){
-        this.$message.warning('该模块正在开发中……', 2)
+        this.$message.warning('该功能正在开发中', 2)
         this.$nextTick(()=>{
           this.setSelectKey()
         })

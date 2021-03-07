@@ -77,16 +77,19 @@ export default {
       }
     },
     updateMenu () {
-      
       const routes = this.$route.matched.concat()
-
-      if (routes.length >= 4 && this.$route.meta.hidden) {
+      // 如果没有对应的组件 则不做跳转
+      if(routes[routes.length -1].components.default === null){
+        this.$router.go(-1)
+        this.$message.warn('该功能正在开发中', 2)
+        return
+      }
+      if (routes.length >= 4) {
         routes.pop()
         this.selectedKeys = [routes[2].path]
       } else {
         this.selectedKeys = [routes.pop().path]
       }
-
       const openKeys = []
       if (this.mode === 'inline') {
         routes.forEach(item => {
