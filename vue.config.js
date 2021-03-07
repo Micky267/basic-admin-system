@@ -1,4 +1,15 @@
+/*
+ * @Descripttion: 配置
+ * @version: 1.0
+ * @Author: Micky
+ * @Date: 2021-03-06 20:14:43
+ * @LastEditors: Micky
+ * @LastEditTime: 2021-03-07 10:02:18
+ */
 module.exports = {
+  devServer: {
+    public: 'http://localhost:8000'
+  },
   css: {
     loaderOptions: {
       less: {

@@ -65,7 +65,6 @@ export default {
      */
     getCurrPath(){
       const matched  = this.$route.matched
-      console.log('this.$route', this.$route)
       if(matched && matched.length >1 ){
         return matched[matched.length -1].path
       }

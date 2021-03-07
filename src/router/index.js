@@ -4,7 +4,7 @@
  * @Author: Micky
  * @Date: 2021-03-06 19:14:23
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 00:28:36
+ * @LastEditTime: 2021-03-07 09:54:51
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -36,7 +36,7 @@ const routes = [
       },
       component: null
     },{
-      path: '/labourCompetition',
+      path: '/modelManage',
       name: 'modelManage',
       meta:{
         title: '模型管理',
@@ -74,7 +74,7 @@ const routes = [
         }
       ]
     },{
-      path: '/labourCompetition',
+      path: '/assessmentCenter',
       name: 'assessmentCenter',
       meta:{
         title: '评估中心',
