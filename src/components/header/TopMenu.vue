@@ -7,12 +7,12 @@
  * @Author: Micky
  * @Date: 2021-03-06 21:10:42
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 12:10:15
+ * @LastEditTime: 2021-03-08 12:44:06
 -->
 <template>
-  <div class="c-top-menu">
+  <div class="c-header-top-menu">
     <a-menu v-model="selectedKey" mode="horizontal" @select="selectClick">
-      <a-menu-item v-for="(item) in topMenuList" :key="item.path" @click="e => topMenuChange(e, item)">{{item.meta.title}}</a-menu-item>
+      <a-menu-item v-for="item in topMenuList" :key="item.path" @click="e => topMenuChange(e, item)">{{ item.meta.title }}</a-menu-item>
     </a-menu>
   </div>
 </template>
@@ -28,8 +28,8 @@ export default {
   mounted() {
     this.initMenu()
   },
-  watch:{
-    $route: function () {
+  watch: {
+    $route: function() {
       this.routeChange()
     }
   },
@@ -37,15 +37,15 @@ export default {
     /**
      * @description: 初始化菜单
      */
-    initMenu(){
+    initMenu() {
       // 获取头部菜单
       this.topMenuList = this.$router.options.routes[0].children
       // 如果有菜单权限
-      if( Array.isArray(this.topMenuList)  &&  this.topMenuList.length){
+      if (Array.isArray(this.topMenuList) && this.topMenuList.length) {
         this.routeChange()
-      }else{
+      } else {
         // 如果没有菜单权限则返回登录页
-        this.$router.push({path: '/login'})
+        this.$router.push({ path: '/login' })
       }
     },
     /**
@@ -53,38 +53,38 @@ export default {
      * @param {*}
      * @return {*}
      */
-    routeChange(){
+    routeChange() {
       // 更改头部选中项
       this.setSelectKey()
       const targetMenu = this.topMenuList.find(item => item.path === this.selectedKey[0])
-      if(!targetMenu.component){
+      if (!targetMenu.component) {
         this.$message.warning('该功能正在开发中', 2)
         this.$router.go(-1)
         return
       }
       // 如果有子菜单，泽更改侧边栏
-      if(Array.isArray(targetMenu.children) && targetMenu.children.length){
+      if (Array.isArray(targetMenu.children) && targetMenu.children.length) {
         this.setSideMenu(targetMenu)
       }
     },
-    
+
     /**
      * @description: 根据路径更新头部菜单选中项
      */
-    setSelectKey(){
+    setSelectKey() {
       const pathArr = this.$route.path.split('/')
       this.selectedKey = [`/${pathArr[1]}`]
     },
     /**
      * @description: 头部菜单点击事件
      */
-    topMenuChange(e, item){
-      if(!item.component){
+    topMenuChange(e, item) {
+      if (!item.component) {
         this.$message.warning('该功能正在开发中', 2)
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           this.setSelectKey()
         })
-      }else{
+      } else {
         this.goDefaultPath(item)
         this.setSideMenu(item)
       }
@@ -92,28 +92,44 @@ export default {
     /**
      * @description: 更新侧边栏
      */
-    setSideMenu(item){
+    setSideMenu(item) {
       this.$emit('changeSideMenu', item)
     },
     /**
      * @description: 跳转
      */
-    goDefaultPath(item){
-      if(item.children && item.children.length){
-        this.$router.push({path: item.children[0].path})
-      }else{
-        this.$router.push({path: item.path})
+    goDefaultPath(item) {
+      if (item.children && item.children.length) {
+        this.$router.push({ path: item.children[0].path })
+      } else {
+        this.$router.push({ path: item.path })
       }
     },
     /**
-   * @description: 菜单选中
-   */  
-    selectClick(e){
-      console.log('e',e)
-     
+     * @description: 菜单选中
+     */
+
+    selectClick(e) {
+      console.log('e', e)
     }
   }
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.c-header-top-menu {
+  height: 100%;
+  /deep/ .ant-menu {
+    height: 100%;
+    line-height: 55px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    border: 0;
+    .ant-menu-item-selected {
+      background-color: rgb(45, 69, 124);
+      color: #fff;
+      border-bottom: 3px solid rgb(84, 124, 261);
+    }
+  }
+}
+</style>

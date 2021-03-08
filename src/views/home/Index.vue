@@ -4,28 +4,106 @@
  * @Author: Micky
  * @Date: 2021-03-06 20:06:07
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 00:30:13
+ * @LastEditTime: 2021-03-09 00:07:43
 -->
 <template>
-  <div class="c-page">
-    首页
+  <div class="c-home">
+    <div class="layout-left">
+      <!-- 我参与的 -->
+      <div class="my-participate">
+        <MyParticipate />
+      </div>
+      <!-- 统计概览 -->
+      <div class="statistics">
+        <Statistics />
+      </div>
+    </div>
+    <div class="layout-right">
+      <!-- 我的消息 -->
+      <div class="right-item my-message">
+        <MyMessage />
+      </div>
+      <!-- 我的待办 -->
+      <div class="right-item my-agenda">
+        <MyAgenda />
+      </div>
+      <!-- 公告和动态 -->
+      <div class="right-item notive-and-dynamic">
+        <NoticeAndDynamic />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import MyAgenda from '@/views/home/MyAgenda' // 我的待办
+import MyMessage from '@/views/home/MyMessage' // 我的消息
+import MyParticipate from '@/views/home/MyParticipate' // 我参与的
+import NoticeAndDynamic from '@/views/home/NoticeAndDynamic' // 公告和动态
+import Statistics from '@/views/home/Statistics' // 统计预览
 export default {
-  data(){
-    return {
-
-    }
+  components: {
+    MyAgenda,
+    MyMessage,
+    MyParticipate,
+    NoticeAndDynamic,
+    Statistics
   },
-  mounted(){
-    // this.getRouter()
+  data() {
+    return {}
   },
-  methods:{
-    // getRouter(){
-    // }
-  }
+  computed: {},
+  methods: {}
 }
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.c-home {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  .layout-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    padding: 20px 30px 30px 30px;
+    .my-participate {
+      height: 165px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .statistics {
+      background: seagreen;
+      flex: 1;
+    }
+  }
+  .layout-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 300px;
+    background: springgreen;
+    .right-item {
+      width: 100%;
+      overflow: auto;
+      &:not(:last-child) {
+        margin-bottom: 18px;
+      }
+    }
+    .my-message {
+      height: 55px;
+      background: tomato;
+    }
+    .my-agenda {
+      flex: 3 1 340px;
+      height: 340px;
+      background: seagreen;
+    }
+    .notive-and-dynamic {
+      flex: 2 1 260px;
+      height: 260px;
+      background: royalblue;
+    }
+  }
+}
+</style>

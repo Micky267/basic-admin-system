@@ -4,13 +4,25 @@
  * @Author: Micky
  * @Date: 2021-03-06 20:14:43
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 10:02:18
+ * @LastEditTime: 2021-03-08 12:12:57
  */
+const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV)
 module.exports = {
   devServer: {
-    public: 'http://localhost:8000'
+    public: ''
+  },
+  chainWebpack: config => {
+    // 修复HMR
+    config.resolve.symlinks(true)
+    
   },
   css: {
+    // 是否使用css分离插件 ExtractTextPlugin
+    extract: IS_PROD,
+    // 开启 CSS source maps?
+    sourceMap: false,
+    // 启用 CSS modules for all css / pre-processor files.
+    modules: false,
     loaderOptions: {
       less: {
         modifyVars: {

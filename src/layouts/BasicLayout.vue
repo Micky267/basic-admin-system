@@ -4,36 +4,39 @@
  * @Author: Micky
  * @Date: 2021-03-06 20:03:12
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-07 00:56:04
+ * @LastEditTime: 2021-03-08 20:59:34
 -->
 <template>
   <a-layout class="c-components-layout">
     <a-layout-header class="c-components-header">
-      <TopMenu @changeSideMenu="changeSideMenu" />
+      <MyHeader @changeSideMenu="changeSideMenu" />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider class="c-components-sider"  v-if="menuList && menuList.length">
-        <SizeMenu
-          mode="inline"
-          :menu="menuList"
-          :theme="'light'"
-          :collapsible="true"
-        ></SizeMenu>
+      <a-layout-sider class="c-components-sider" v-if="menuList && menuList.length">
+        <SizeMenu mode="inline" :menu="menuList" :theme="'light'" :collapsible="true"></SizeMenu>
       </a-layout-sider>
       <a-layout-content class="c-components-content">
-        <router-view />
+        <!-- 工作台 -->
+        <div class="c-components-home" v-if="$route.path === '/home'">
+          <router-view />
+        </div>
+        <!-- 其他模块 -->
+        <div class="c-components-list" v-else>
+          <div class="c-page-title">导航1/导航232456 </div>
+          <router-view />
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script>
-import TopMenu from '@/components/topMenu/Index'
+import MyHeader from '@/components/header/Index'
 import SizeMenu from '@/components/sideMenu/index.js'
 export default {
   components: {
     SizeMenu,
-    TopMenu
+    MyHeader
   },
   data() {
     return {
@@ -63,10 +66,10 @@ export default {
     /**
      * @description: 获取当前的path
      */
-    getCurrPath(){
-      const matched  = this.$route.matched
-      if(matched && matched.length >1 ){
-        return matched[matched.length -1].path
+    getCurrPath() {
+      const matched = this.$route.matched
+      if (matched && matched.length > 1) {
+        return matched[matched.length - 1].path
       }
       // if (routes.length >= 4) {
       //   routes.pop()
@@ -83,11 +86,23 @@ export default {
 .c-components-layout {
   height: 100vh;
   .ant-layout-header.c-components-header {
-    background: blue;
+    padding: 0;
+    background-color: rgb(41, 63, 112);
+    color: #fff;
+    height: 58px;
+  }
+  .ant-layout-sider.c-components-sider {
+    background-color: #fff;
     color: #fff;
   }
-  .c-components-sider {
-    color: #fff;
+  .c-components-content{
+    .c-components-home{
+      height: 100%;
+    }
+    .c-components-list{
+      padding: 5px 15px 15px 15px;
+      height: calc(100% - 25px) ;
+    }
   }
 }
 </style>
