@@ -7,7 +7,7 @@
  * @Author: Micky
  * @Date: 2021-03-06 21:10:42
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-08 12:44:06
+ * @LastEditTime: 2021-03-10 03:37:12
 -->
 <template>
   <div class="c-header-top-menu">
@@ -110,7 +110,6 @@ export default {
      */
 
     selectClick(e) {
-      console.log('e', e)
     }
   }
 }

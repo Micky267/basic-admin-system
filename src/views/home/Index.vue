@@ -4,7 +4,7 @@
  * @Author: Micky
  * @Date: 2021-03-06 20:06:07
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-09 00:07:43
+ * @LastEditTime: 2021-03-10 00:33:52
 -->
 <template>
   <div class="c-home">
@@ -23,13 +23,15 @@
       <div class="right-item my-message">
         <MyMessage />
       </div>
-      <!-- 我的待办 -->
-      <div class="right-item my-agenda">
-        <MyAgenda />
-      </div>
-      <!-- 公告和动态 -->
-      <div class="right-item notive-and-dynamic">
-        <NoticeAndDynamic />
+      <div class="right-bottom">
+        <!-- 我的待办 -->
+        <div class="right-item my-agenda">
+          <MyAgenda />
+        </div>
+        <!-- 公告和动态 -->
+        <div class="right-item notive-and-dynamic">
+          <NoticeAndDynamic />
+        </div>
       </div>
     </div>
   </div>
@@ -64,16 +66,15 @@ export default {
   .layout-left {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 200px;
     height: 100%;
-    padding: 20px 30px 30px 30px;
+    padding: 15px 30px 30px 30px;
     .my-participate {
       height: 165px;
       width: 100%;
       margin-bottom: 20px;
     }
     .statistics {
-      background: seagreen;
       flex: 1;
     }
   }
@@ -81,28 +82,26 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 300px;
-    background: springgreen;
+    flex: 0 0 300px;
+    background: rgb(247, 247, 247);
+    .right-bottom {
+      padding-left: 10px;
+    }
     .right-item {
       width: 100%;
-      overflow: auto;
-      &:not(:last-child) {
-        margin-bottom: 18px;
-      }
     }
     .my-message {
       height: 55px;
-      background: tomato;
+      margin-bottom: 10px;
     }
     .my-agenda {
       flex: 3 1 340px;
       height: 340px;
-      background: seagreen;
+      margin-bottom: 10px;
     }
     .notive-and-dynamic {
       flex: 2 1 260px;
       height: 260px;
-      background: royalblue;
     }
   }
 }

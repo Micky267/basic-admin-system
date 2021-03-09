@@ -4,7 +4,7 @@
  * @Author: Micky
  * @Date: 2021-03-06 20:03:12
  * @LastEditors: Micky
- * @LastEditTime: 2021-03-08 20:59:34
+ * @LastEditTime: 2021-03-10 03:22:39
 -->
 <template>
   <a-layout class="c-components-layout">
@@ -22,7 +22,7 @@
         </div>
         <!-- 其他模块 -->
         <div class="c-components-list" v-else>
-          <div class="c-page-title">导航1/导航232456 </div>
+          <NavBreadcrumb/>
           <router-view />
         </div>
       </a-layout-content>
@@ -33,10 +33,12 @@
 <script>
 import MyHeader from '@/components/header/Index'
 import SizeMenu from '@/components/sideMenu/index.js'
+import NavBreadcrumb from '@/components/navBreadcrumb/Index'
 export default {
   components: {
     SizeMenu,
-    MyHeader
+    MyHeader,
+    NavBreadcrumb
   },
   data() {
     return {
